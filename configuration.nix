@@ -1,0 +1,114 @@
+{ config, pkgs, lib, inputs, ... }:
+
+{
+  # -------- imports --------
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
+  # -------- basics --------
+  networking.hostName = "nixos";
+  time.timeZone = "Europe/Zurich";
+  i18n.defaultLocale = "en_GB.UTF-8";
+  networking.networkmanager.enable = true;
+
+  # Bootloader
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # GNOME on NixOS 25.05 (xserver paths)
+  services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.xkb = { layout = "ch"; variant = ""; };
+  console.keyMap = "sg";
+
+  # Printing
+  services.printing.enable = true;
+
+  # Audio (PipeWire)
+  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  # Users
+  users.users.luix = {
+    isNormalUser = true;
+    description = "luix";
+    extraGroups = [ "networkmanager" "wheel" ];
+  };
+
+  # Program toggles
+  programs.firefox.enable = true;
+  programs.obs-studio.enable = true;
+  programs.steam.enable = true;
+  programs.neovim.enable = true;
+  programs.git.enable = true;
+  programs.tmux.enable = true;
+
+  # Unfree ok
+  nixpkgs.config.allowUnfree = true;
+
+  # Graphics (25.05 uses hardware.graphics.*)
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  # Optional AMD OpenCL ICD (you had this earlier)
+  hardware.graphics.extraPackages = with pkgs; [
+    rocmPackages.clr.icd
+  ];
+
+  # -------- Nix settings + caches --------
+  nix.settings = {
+    # Keep flakes UX nice everywhere
+    experimental-features = [ "nix-command" "flakes" ];
+
+    # Caches from nix-citizen + nix-gaming READMEs
+    substituters = [
+      "https://nix-citizen.cachix.org"
+      "https://nix-gaming.cachix.org"
+    ];
+    trusted-public-keys = [
+      "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="
+      "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+    ];
+  };
+
+  # -------- Safety net: pin wine-mono to a real MSI (10.1.0) --------
+  # Prevents the 10.2.0 404 you saw.
+  nixpkgs.overlays = [
+    (final: prev: {
+      wine-mono = prev.wine-mono.overrideAttrs (_: {
+        version = "10.1.0";
+        src = prev.fetchurl {
+          url = "https://github.com/wine-mono/wine-mono/releases/download/wine-mono-10.1.0/wine-mono-10.1.0-x86.msi";
+          sha256 = lib.fakeSha256; # first build prints real hash; paste it back
+        };
+      });
+    })
+  ];
+
+  # -------- Packages --------
+  environment.systemPackages = with pkgs; [
+    # your tools
+    wget qownnotes davinci-resolve-studio discord nodejs dbeaver-bin
+    gimp-with-plugins libreoffice php clinfo freshfetch ffmpeg stow
+    gcc gnumake unzip ripgrep luarocks-nix lua lua51Packages.lz-n
+    kitty 
+    python3
+
+    # Star Citizen from nix-citizen 
+    inputs.nix-citizen.packages.${pkgs.system}.star-citizen
+  ];
+
+  system.stateVersion = "25.05";
+}
+
