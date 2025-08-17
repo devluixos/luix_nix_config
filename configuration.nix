@@ -12,8 +12,28 @@
   i18n.defaultLocale = "en_GB.UTF-8";
   networking.networkmanager.enable = true;
 
+  # --- Updates & maintenance ---
+  system.autoUpgrade = {
+    enable = true;
+    allowReboot = false;
+    flake = "/etc/nixos#nixos";
+    dates = "daily";
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 20d";
+  };
+
+  nix.optimise = {
+    automatic = true;
+    dates = ["weekly"];
+  };
+
   # Bootloader
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # GNOME on NixOS 25.05 (xserver paths)
@@ -55,6 +75,15 @@
   # Unfree ok
   nixpkgs.config.allowUnfree = true;
 
+  # --- Hardware & firmware ---
+  hardware.cpu.amd.updateMicrocode = true;
+  services.fwupd.enable = true;
+  services.fstrim.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   # Graphics (25.05 uses hardware.graphics.*)
   hardware.graphics = {
     enable = true;
@@ -80,6 +109,7 @@
       "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
     ];
+    auto-optimise-store = true;
   };
 
   # -------- Safety net: pin wine-mono to a real MSI (10.1.0) --------
