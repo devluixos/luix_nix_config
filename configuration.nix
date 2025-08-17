@@ -104,6 +104,7 @@
     gcc gnumake unzip ripgrep luarocks-nix lua lua51Packages.lz-n
     kitty 
     python3
+    audacity
 
     # Star Citizen from nix-citizen 
     inputs.nix-citizen.packages.${pkgs.system}.star-citizen
