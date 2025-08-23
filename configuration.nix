@@ -135,6 +135,7 @@
     kitty 
     python3
     audacity
+    prismlauncher
 
     # Star Citizen from nix-citizen 
     inputs.nix-citizen.packages.${pkgs.system}.star-citizen
