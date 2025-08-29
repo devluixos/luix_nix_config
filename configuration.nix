@@ -12,6 +12,11 @@
   i18n.defaultLocale = "en_GB.UTF-8";
   networking.networkmanager.enable = true;
 
+  boot.kernel.sysctl = {
+    "vm.max_map_count" = 16777216;
+    "fs.file-max" = 524288;
+  };
+
   # --- Updates & maintenance ---
   system.autoUpgrade = {
     enable = true;
