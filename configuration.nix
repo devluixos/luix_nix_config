@@ -141,6 +141,7 @@
     python3
     audacity
     prismlauncher
+    orca-slicer
 
     # Star Citizen from nix-citizen 
     inputs.nix-citizen.packages.${pkgs.system}.star-citizen
