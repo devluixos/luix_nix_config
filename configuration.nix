@@ -76,6 +76,8 @@
   programs.neovim.enable = true;
   programs.git.enable = true;
   programs.tmux.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.guest.enable = true;
 
   # Unfree ok
   nixpkgs.config.allowUnfree = true;
