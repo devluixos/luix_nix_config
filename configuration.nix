@@ -76,6 +76,7 @@
   programs.neovim.enable = true;
   programs.git.enable = true;
   programs.tmux.enable = true;
+  programs.java.enable = true;
 
   # VM Box
   virtualisation.virtualbox.host.enable = true;
@@ -151,7 +152,6 @@
     # Star Citizen from nix-citizen 
     inputs.nix-citizen.packages.${pkgs.system}.star-citizen
   ];
-
   system.stateVersion = "25.05";
 }
 
