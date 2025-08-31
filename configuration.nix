@@ -66,7 +66,7 @@
   users.users.luix = {
     isNormalUser = true;
     description = "luix";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "vboxusers"];
   };
 
   # Program toggles
@@ -76,8 +76,11 @@
   programs.neovim.enable = true;
   programs.git.enable = true;
   programs.tmux.enable = true;
+
+  # VM Box
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.guest.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # Unfree ok
   nixpkgs.config.allowUnfree = true;
