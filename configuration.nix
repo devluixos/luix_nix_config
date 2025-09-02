@@ -69,6 +69,21 @@
     extraGroups = [ "networkmanager" "wheel" "vboxusers"];
   };
 
+  #fonts
+  fonts.packages = with pkgs; [
+    #nerdfonts
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.symbols-only
+    nerd-fonts.bigblue-terminal
+
+
+    #other fonts
+    roboto
+    #mulish
+    #bebas-neue
+    #drois-sans-mono
+  ];
+
   # Program toggles
   programs.firefox.enable = true;
   programs.obs-studio.enable = true;
@@ -149,6 +164,7 @@
     audacity
     prismlauncher
     orca-slicer
+    easyeffects
 
     # Star Citizen from nix-citizen 
     inputs.nix-citizen.packages.${pkgs.system}.star-citizen
