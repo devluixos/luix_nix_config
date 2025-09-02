@@ -76,6 +76,7 @@
     nerd-fonts.symbols-only
     nerd-fonts.bigblue-terminal
     nerd-fonts.heavy-data
+    nerd-fonts.hurmit
 
 
     #other fonts
