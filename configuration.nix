@@ -75,6 +75,7 @@
     nerd-fonts.droid-sans-mono
     nerd-fonts.symbols-only
     nerd-fonts.bigblue-terminal
+    nerd-fonts.heavy-data
 
 
     #other fonts
@@ -165,6 +166,7 @@
     prismlauncher
     orca-slicer
     easyeffects
+    yazi
 
     # Star Citizen from nix-citizen 
     inputs.nix-citizen.packages.${pkgs.system}.star-citizen
