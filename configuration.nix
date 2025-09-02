@@ -77,6 +77,7 @@
   programs.git.enable = true;
   programs.tmux.enable = true;
   programs.java.enable = true;
+  programs.bazecor.enable = true;
 
   # VM Box
   virtualisation.virtualbox.host.enable = true;
