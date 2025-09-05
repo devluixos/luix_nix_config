@@ -141,20 +141,6 @@
     auto-optimise-store = true;
   };
 
-  # -------- Safety net: pin wine-mono to a real MSI (10.1.0) --------
-  # Prevents the 10.2.0 404 you saw.
-  nixpkgs.overlays = [
-    (final: prev: {
-      wine-mono = prev.wine-mono.overrideAttrs (_: {
-        version = "10.1.0";
-        src = prev.fetchurl {
-          url = "https://github.com/wine-mono/wine-mono/releases/download/wine-mono-10.1.0/wine-mono-10.1.0-x86.msi";
-          sha256 = lib.fakeSha256; # first build prints real hash; paste it back
-        };
-      });
-    })
-  ];
-
   # -------- Packages --------
   environment.systemPackages = with pkgs; [
     # your tools
