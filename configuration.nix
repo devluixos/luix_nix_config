@@ -107,8 +107,8 @@
     enable = true;
     ohMyZsh = {
       enable = true;
-      plugins = [ "git" "docker" ];
-      theme = "agnoster";
+      plugins = [ "git" "docker" "zsh-autosuggestions" "zsh-syntax-highlighting" ];
+      theme = "powerlevel10k/powerlevel10k";
     };
   };
   # Unfree ok
