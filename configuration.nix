@@ -100,6 +100,7 @@
   programs.java.enable = true;
   programs.bazecor.enable = true;
   programs.zsh.enable = true;
+  programs.zsh.ohMyZsh.enable = true;
 
   # Unfree ok
   nixpkgs.config.allowUnfree = true;
