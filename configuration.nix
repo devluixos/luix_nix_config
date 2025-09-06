@@ -99,9 +99,18 @@
   programs.tmux.enable = true;
   programs.java.enable = true;
   programs.bazecor.enable = true;
-  programs.zsh.enable = true;
-  programs.zsh.ohMyZsh.enable = true;
+  #programs.zsh.enable = true;
+  #programs.zsh.ohMyZsh.enable = true;
 
+  # zsh ohmyzsh and others
+  programs.zsh = {
+    enable = true;
+    ohMyZsh = {
+      enable = true;
+      plugins = [ "git" "docker" ];
+      theme = "jonathan";
+    };
+  };
   # Unfree ok
   nixpkgs.config.allowUnfree = true;
 
