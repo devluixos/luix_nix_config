@@ -108,7 +108,7 @@
     ohMyZsh = {
       enable = true;
       plugins = [ "git" "docker" ];
-      theme = "jonathan";
+      theme = "agnoster";
     };
   };
   # Unfree ok
