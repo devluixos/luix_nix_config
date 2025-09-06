@@ -67,6 +67,7 @@
     isNormalUser = true;
     description = "luix";
     extraGroups = [ "networkmanager" "wheel" "vboxusers"];
+    shell = pkgs.zsh;
   };
 
   #fonts
@@ -96,11 +97,6 @@
   programs.java.enable = true;
   programs.bazecor.enable = true;
   programs.zsh.enable = true;
-
-  # VM Box
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.guest.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # Unfree ok
   nixpkgs.config.allowUnfree = true;
