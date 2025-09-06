@@ -62,6 +62,9 @@
     pulse.enable = true;
   };
 
+  # default Shell
+  environment.shells = with pkgs; [ zsh ];
+
   # Users
   users.users.luix = {
     isNormalUser = true;
