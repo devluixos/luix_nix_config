@@ -166,7 +166,7 @@
     yazi
 
     # Star Citizen from nix-citizen 
-    # inputs.nix-citizen.packages.${pkgs.system}.star-citizen
+    inputs.nix-citizen.packages.${pkgs.system}.star-citizen
   ];
   system.stateVersion = "25.05";
 }
