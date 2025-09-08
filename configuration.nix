@@ -105,7 +105,11 @@
   # zsh ohmyzsh and others
   programs.zsh = {
     enable = true;
-    ohMyZsh.enable = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "thefuck" ];
+      theme = "robbyrussell";
+  };
   };
   # Unfree ok
   nixpkgs.config.allowUnfree = true;
@@ -162,7 +166,7 @@
     yazi
 
     # Star Citizen from nix-citizen 
-    inputs.nix-citizen.packages.${pkgs.system}.star-citizen
+    # inputs.nix-citizen.packages.${pkgs.system}.star-citizen
   ];
   system.stateVersion = "25.05";
 }
