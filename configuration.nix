@@ -105,11 +105,7 @@
   # zsh ohmyzsh and others
   programs.zsh = {
     enable = true;
-    ohMyZsh = {
-      enable = true;
-      plugins = [ "git" "docker" "zsh-autosuggestions" "zsh-syntax-highlighting" ];
-      theme = "powerlevel10k/powerlevel10k";
-    };
+    ohMyZsh.enable = true;
   };
   # Unfree ok
   nixpkgs.config.allowUnfree = true;
