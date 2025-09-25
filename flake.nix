@@ -4,6 +4,7 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
     # Star Citizen flake
     nix-citizen.url = "github:LovingMelody/nix-citizen";
+    nix-citizen.inputs.nix-gaming.follows = "nix-gaming";
 
     # home manager
     home-manager.url = "github:nix-community/home-manager/release-25.05";
